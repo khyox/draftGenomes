@@ -30,6 +30,6 @@ Please run `./taxid2wgs.py --help` to see all the possibilities and details.
 
 ### References
 
-* [GenBank WGS Projects](ftp://ftp.ncbi.nih.gov/genbank/wgs/README.genbank.wgs)
-* [WGS projects browser](https://www.ncbi.nlm.nih.gov/Traces/wgs/)
-* [WGS projects data](ftp://ftp.ncbi.nlm.nih.gov/sra/wgs_aux/)
+* [GenBank WGS Projects](ftp://ftp.ncbi.nih.gov/genbank/wgs/README.genbank.wgs): ftp://ftp.ncbi.nih.gov/genbank/wgs/README.genbank.wgs
+* [WGS projects browser](https://www.ncbi.nlm.nih.gov/Traces/wgs/): https://www.ncbi.nlm.nih.gov/Traces/wgs/
+* [WGS projects data](ftp://ftp.ncbi.nlm.nih.gov/sra/wgs_aux/): ftp://ftp.ncbi.nlm.nih.gov/sra/wgs_aux/
