@@ -1,14 +1,17 @@
-# taxid2wgs: For any taxon, get all the NCBI WGS sequences
+# draftGenomes
+<p align="center"><b>For any taxonomic subtree, get all the NCBI WGS sequences</b>
+</p> 
 
+____
 ### Overview
 
 NCBI WGS (Whole Genome Shotgun) is a huge database from [NCBI](https://www.ncbi.nlm.nih.gov/) including sequences from incomplete genomes that have been sequenced by a whole genome shotgun strategy. The sequences belong to hundred of thousands of different sequencing projects which should be located and downloaded individually. 
 
-To ease the task of downloading sequences related to a NCBI taxonomical identifier (_taxid_) in any taxonomical level, here you are `taxid2wgs.py`. This script **collects sequence files from WGS projects and process them** to generate a single coherent fasta file, parsing the sequence headers to update them if needed. 
+To ease the task of downloading sequences related to a NCBI taxonomical identifier (_taxid_) in any taxonomical level, here you are `draftGenomes`. This script **collects sequence files from NCBI WGS projects and process them** to generate a single coherent fasta file, parsing the sequence headers to update them if needed. 
 
 ### Details
 
-At the beginning `taxid2wgs.py` was conceived as a Python version of the [Perl script with the same name from NCBI](ftp://ftp.ncbi.nlm.nih.gov/blast/WGS_TOOLS/README_BLASTWGS.txt), but finally it now goes beyond such initial purpose.
+At the beginning `draftGenomes` was conceived as a Python version of the [taxid2wgs Perl script from NCBI](ftp://ftp.ncbi.nlm.nih.gov/blast/WGS_TOOLS/README_BLASTWGS.txt), but finally it now goes beyond such initial purpose.
 
 As downloading and parsing NCBI WGS projects could take a long time (and require a lot of disk space) depending on the taxid selected, the script recovers from several errors. It has a _resume mode_ in case of any fatal interruption of the process. 
 
@@ -20,9 +23,13 @@ In addition, there are some other modes of operation:
 
 It has been tested successfully in ~TB downloads with several interruptions.
 
+### Installing
+
+Just clone the GitHup repository or, even more easier, download the script. 
+
 ### Running
 
-`taxid2wgs.py` just requires a Python 3 interpreter. No other packages beyond the Python Standard Library ones are needed.
+`draftGenomes` just requires a Python 3 interpreter. No other packages beyond the Python Standard Library ones are needed.
 
 The output files have the format: `WGS4taxid{include}-{exclude}.fa` where `{include}` is the taxid of the root of the taxonomical subtree of interest while `{exclude}` (optional) is the taxid of the root of the excluded taxa in that subtree. Both taxids are options of the script. 
 

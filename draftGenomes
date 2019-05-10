@@ -1,10 +1,34 @@
 #!/usr/bin/env python3
+#
+#     Copyright (C) 2018, Jose Manuel Martí Martínez
+#
+#     This program is free software: you can redistribute it and/or modify
+#     it under the terms of the GNU Affero General Public License as
+#     published by the Free Software Foundation, either version 3 of the
+#     License, or (at your option) any later version.
+#
+#     This program is distributed in the hope that it will be useful,
+#     but WITHOUT ANY WARRANTY; without even the implied warranty of
+#     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+#     GNU Affero General Public License for more details.
+#
+#     You should have received a copy of the GNU Affero General Public License
+#     along with this program. If not, see <https://www.gnu.org/licenses/>.
+#
 """
-Collect and parse NCBI WGS project fasta files from a taxid
+draftGenomes: Collect and parse multiple NCBI WGS projects from a taxid
 
 Download NCBI WGS fasta files gzipped and process them to generate
 a single coherent fasta file.
 """
+
+__author__ = 'Jose Manuel Martí'
+__copyright__ = 'Copyright (C) 2017–2019 Jose Manuel Martí Martínez'
+__license__ = 'GNU Affero General Public License Version 3'
+__email__ = 'jse.mnl **AT** gmail.com'
+__status__ = 'Beta'
+__date__ = 'May 2019'
+__version__ = '0.2.1'
 
 import argparse
 import gzip
@@ -16,9 +40,6 @@ import sys
 import threading
 import time
 from ftplib import FTP, error_temp, error_proto, error_reply
-
-__version__ = '0.2.0'
-__date__ = 'Feb 2018'
 
 RETRY_TIMES = [0, 5, 15, 30, 60, 120]
 EXCEPTS = (OSError, EOFError, error_temp, error_proto, error_reply)
@@ -134,8 +155,8 @@ def main():
             print(*a, **k, flush=True)
 
     # Program header
-    print('\n=-= {} =-= v{} =-= {} =-=\n'.format(
-        sys.argv[0], __version__, __date__))
+    print('\n=-= {} =-= v{} - {} =-= by {} =-=\n'.format(
+        sys.argv[0], __version__, __date__, __author__))
 
     # Set output and temporal filenames
     if exclude:
