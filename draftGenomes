@@ -28,7 +28,7 @@ __license__ = 'GNU Affero General Public License Version 3'
 __email__ = 'jse.mnl **AT** gmail.com'
 __status__ = 'Beta'
 __date__ = 'May 2019'
-__version__ = '0.2.1'
+__version__ = '0.2.2'
 
 import argparse
 import gzip
@@ -39,7 +39,7 @@ import re
 import sys
 import threading
 import time
-from ftplib import FTP, error_temp, error_proto, error_reply
+from ftplib import FTP, error_temp, error_proto, error_reply, error_perm
 
 RETRY_TIMES = [0, 5, 15, 30, 60, 120]
 EXCEPTS = (OSError, EOFError, error_temp, error_proto, error_reply)
@@ -270,6 +270,15 @@ def main():
                     except EXCEPTS as err:
                         print(yellow(' PROBLEM!'), end='')
                         error = err
+                    except error_perm as err:
+                        if error is None:  # Permit one further attempt
+                            print(yellow(' PROBLEM! Access not allowed!'), end='')
+                            error = err
+                        else:
+                            print(red(' ERROR!'),
+                                gray('Project unreachable:'), proj, 
+                                gray('Skipping...'))
+                            break
                     except KeyboardInterrupt:
                         print(gray(' User'), yellow('interrupted!'))
                         print(RESUME_INFO)
