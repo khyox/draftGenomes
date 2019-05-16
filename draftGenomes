@@ -28,7 +28,7 @@ __license__ = 'GNU Affero General Public License Version 3'
 __email__ = 'jse.mnl **AT** gmail.com'
 __status__ = 'Beta'
 __date__ = 'May 2019'
-__version__ = '0.2.2'
+__version__ = '0.2.3'
 
 import argparse
 import gzip
@@ -272,12 +272,13 @@ def main():
                         error = err
                     except error_perm as err:
                         if error is None:  # Permit one further attempt
-                            print(yellow(' PROBLEM! Access not allowed!'), end='')
+                            print(yellow(' PROBLEM! Access not allowed!'),
+                                  end='')
                             error = err
                         else:
                             print(red(' ERROR!'),
-                                gray('Project unreachable:'), proj, 
-                                gray('Skipping...'))
+                                  gray('Project unreachable:'), proj,
+                                  gray('Skipping...'))
                             break
                     except KeyboardInterrupt:
                         print(gray(' User'), yellow('interrupted!'))
@@ -304,8 +305,8 @@ def main():
                             print(gray('\n Retrying in %s seconds...')
                                   % retry_time, end='')
                             sys.stdout.flush()
-                        time.sleep(retry_time)
                         try:
+                            time.sleep(retry_time)
                             if retry_time:
                                 ftp = FTP(FTP_SERVER, timeout=30)
                                 ftp.login()
@@ -326,6 +327,8 @@ def main():
                                 pass
                             exit(9)
                         else:
+                            if retry_time:
+                                print(green(' OK!'), end='')
                             break
                     else:  # Too many problems, quit
                         try:  # Avoid keeping in disk a corrupt file
