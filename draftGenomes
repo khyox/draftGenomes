@@ -28,7 +28,7 @@ __license__ = 'GNU Affero General Public License Version 3'
 __email__ = 'jse.mnl **AT** gmail.com'
 __status__ = 'Beta'
 __date__ = 'May 2019'
-__version__ = '0.2.3'
+__version__ = '0.2.4'
 
 import argparse
 import gzip
@@ -237,6 +237,8 @@ def main():
     with open(fstfile, 'a') as wgs, open(tmpfile, 'a') as tmp:
         processed = len(parsed)
         progress = itertools.cycle(r'-\|/')
+        if not args.verbose:
+            print(gray('Working...'), end='', flush=True)
         # Looping for projects in the WGS projects to process
         for proj in wgs_projects:
             ftp = None
@@ -302,9 +304,8 @@ def main():
                     error = None
                     for retry_time in RETRY_TIMES:
                         if retry_time:
-                            print(gray('\n Retrying in %s seconds...')
-                                  % retry_time, end='')
-                            sys.stdout.flush()
+                            print(gray(' Retrying in %s seconds...')
+                                  % retry_time, end='', flush=True)
                         try:
                             time.sleep(retry_time)
                             if retry_time:
@@ -316,7 +317,7 @@ def main():
                             # ftp.retrbinary('RETR ' + filename,
                             #                open(filename, 'wb').write)
                         except EXCEPTS as err:
-                            print(yellow(' PROBLEM!'), end='')
+                            print(yellow(' PROBLEM!'), end='', flush=True)
                             error = err
                         except KeyboardInterrupt:
                             print(gray(' User'), yellow('interrupted!'))
@@ -328,7 +329,8 @@ def main():
                             exit(9)
                         else:
                             if retry_time:
-                                print(green(' OK!'), end='')
+                                print(magenta(' SOLVED!'), gray('Resuming...'),
+                                      end='', flush=True)
                             break
                     else:  # Too many problems, quit
                         try:  # Avoid keeping in disk a corrupt file
@@ -398,9 +400,9 @@ def main():
             vprint(green(' OK!'))
             if not args.verbose:
                 if processed % 1 == 0:
-                    print('\r\033[95m{}\033[0m [{:.2%}]\033[90m'.format(
-                        next(progress), processed / len(wgs_projects_raw)),
-                        end='')
+                    print('\r\033[K\033[95m{}\033[0m [{:.2%}]\033[90m'.format(
+                          next(progress), processed / len(wgs_projects_raw)),
+                          end='')
                     if skipped:
                         print(' Skipping download. Parsing...\033[0m', end='')
                     elif just_download:
