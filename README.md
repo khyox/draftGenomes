@@ -1,7 +1,12 @@
 <p align="center">
 <img src="https://raw.githubusercontent.com/khyox/rcf-aux/master/dGheader.png" alt="draftGenomes" width="900px"/></p><hr>
 <p align="center"><b>Collect all the NCBI WGS sequences for any taxonomic subtree</b>
-</p> 
+<hr></p>
+<hr>
+
+## IMPORTANT NOTICE
+**LEGACY SOFTWARE: Due to recent changes in NCBI database framework, this software is not longer working as expected. While it will succeed in retrieving old projects from WGS database, you will need another complementary method to get new projects. See last issues for some examples of the problems. Sorry, I had to move to a different research topic and I have no time to develop the major update needed to keep this working after the NCBI changes.**
+<hr>
 
 ____
 ### Overview
